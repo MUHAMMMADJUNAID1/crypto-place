@@ -3,9 +3,11 @@ import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import arrow_icon from "../../assets/arrow_icon.png";
 import { CoinContext } from "../../context/CoinContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { setCurrency } = useContext(CoinContext);
+  const navigate = useNavigate();
 
   const currencyHandler = (e) => {
     switch (e.target.value) {
@@ -30,13 +32,23 @@ const Navbar = () => {
   };
   return (
     <div className="navbar">
-      <img className="logo" src={logo} alt="" />
+      <img className="logo" onClick={() => navigate("/")} src={logo} alt="" />
 
       <ul>
-        <li>Home</li>
-        <li>Features</li>
-        <li>Pricing</li>
-        <li>Blog</li>
+        <Link to={"/"}>
+          <li>Home</li>
+        </Link>
+        <Link to={"#"}>
+          <li>Features</li>
+        </Link>
+
+        <Link to={"#"}>
+          <li>Pricing</li>
+        </Link>
+
+        <Link to={"#"}>
+          <li>Blog</li>
+        </Link>
       </ul>
       <div className="nav-right">
         <select onChange={currencyHandler} name="" id="">
